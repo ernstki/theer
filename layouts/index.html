@@ -7,7 +7,7 @@
 <!-- list template -->
 <div>
 
-  <h1>{{ .Title }}</h1>
+  <!-- <h1>{{ .Title }}</h1> -->
   {{ .Content }}
 
   {{ range .Paginator.Pages }}
@@ -16,10 +16,14 @@
       <a href="{{ .URL }}">
         <h3>{{ .Title }}</h3>
       </a>
-      <small>{{ .Permalink }}</small>
-      {{ .Date.Format "2006-01-01" }}
+      <!--small>{{ .Permalink }}</small-->
+      <small><strong>(posted {{ .Date.Format "2006-01-01" }})</strong></small>
     </div>
     {{ .Summary }}
+    {{ if .Truncated }}
+    <p></p>
+    <a href="{{ .RelPermalink }}" title="Read the rest of the article">Read more»</a>
+    {{ end }}
   </div>
   {{ end }}
 

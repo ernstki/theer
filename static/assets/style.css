@@ -13,6 +13,7 @@
 }
 #header {
   grid-area: header;
+  margin-top: 0.5em;
 }
 #main {
   grid-area: main;
@@ -73,6 +74,11 @@ aside {
 }
 #toc li {
   margin-top: 0.3rem;
+}
+
+footer {
+  text-align: center;
+  margin:1em;
 }
 
 @media screen and (max-width: 1012px) {
