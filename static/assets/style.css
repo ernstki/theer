@@ -15,6 +15,10 @@
   grid-area: header;
   margin-top: 0.5em;
 }
+#header a:active, #header a:hover {
+  text-decoration: none;
+}
+
 #main {
   grid-area: main;
   max-width: 782px;
