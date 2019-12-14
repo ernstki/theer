@@ -40,9 +40,9 @@
     {{ end }}
 
 
-    <link rel="stylesheet" href="{{ `assets/syntax.css` | relURL }}">
-    <link rel="stylesheet" href="{{ `assets/primer-build.css` | relURL }}">
-    <link rel="stylesheet" href="{{ `assets/style.css` | relURL }}">
+    <link rel="stylesheet" href="{{ `css/syntax.css` | relURL }}">
+    <link rel="stylesheet" href="{{ `css/primer-build.css` | relURL }}">
+    <link rel="stylesheet" href="{{ `css/style.css` | relURL }}">
   </head>
   <body class="bg-gray">
     <div id="holy" class="container-lg bg-white">
@@ -67,12 +67,18 @@
 
     </div>
 
+    <div class="bottom-panel" id="bottom-panel">
+        <div class="popup-wrapper" id="popup-wrapper"></div> 
+    </div> 
+
     {{ partial "footer" .}}
 
+    <script src="{{ `js/footnotes.js` | relURL }}"></script>
     <!-- Scripts -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax -->
     <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
-    <script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <!-- this is a 404 right now anyway -->
+    <!--script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script-->
   </body>
 </html>
