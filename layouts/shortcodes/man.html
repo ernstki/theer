@@ -1,0 +1,10 @@
+{{/* ugly -- figure out how to fix this */}}
+{{- if .Get 1 -}}
+  {{- $sect := .Get 0 -}}
+  {{- $manpage := .Get 1 -}}
+<a href="http://man7.org/linux/man-pages/man{{ $sect }}/{{ $manpage }}.{{ $sect }}.html" title="Manual page for {{ $manpage }}({{ $sect }}) - man7.org">{{ if .Inner }}{{ .Inner | markdownify }}{{ else }}<code>{{ $manpage }}</code>{{ end }}</a>
+{{- else -}}
+  {{- $sect := "1" -}}
+  {{- $manpage := .Get 0 -}}
+<a href="http://man7.org/linux/man-pages/man{{ $sect }}/{{ $manpage }}.{{ $sect }}.html" title="Manual page for {{ $manpage }}({{ $sect }}) - man7.org">{{ if .Inner }}{{ .Inner | markdownify }}{{ else }}<code>{{ $manpage }}</code>{{ end }}</a>
+{{- end -}}
