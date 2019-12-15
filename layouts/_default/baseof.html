@@ -2,7 +2,7 @@
 <html>
   <head>
     {{ if not .Site.BuildDrafts }}
-    {{ template "_internal/google_analytics_async.html" . }}
+    {{/* template "_internal/google_analytics_async.html" . */}}
     {{ end }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,18 +36,18 @@
     <meta name="twitter:creator" content="@{{ .Site.Params.Twitter }}">
     <meta name="twitter:title" content="{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
     <meta name="twitter:description" content="{{ .Description | default .Summary }}|{{ .Site.Params.Description }}">
-    <meta name="twitter:image" content="twitter-card.png">
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}twitter-card.png">
     {{ end }}
-
 
     <link rel="stylesheet" href="{{ `css/syntax.css` | relURL }}">
     <link rel="stylesheet" href="{{ `css/primer-build.css` | relURL }}">
     <link rel="stylesheet" href="{{ `css/style.css` | relURL }}">
   </head>
-  <body class="bg-gray">
-    <div id="holy" class="container-lg bg-white">
 
-      <div id="header" class="px-4 bg-white">
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
         {{ partial "header.html" . }}
       </div>
 
@@ -65,20 +65,22 @@
         </aside>
       </div>
 
+      {{/* FIXME: included on list pages, too, which have no footnotes */}}
+      <div class="bottom-panel" id="bottom-panel">
+        <div class="popup-wrapper" id="popup-wrapper"></div>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        {{ partial "footer.html" . }}
+      </div>
     </div>
 
-    <div class="bottom-panel" id="bottom-panel">
-        <div class="popup-wrapper" id="popup-wrapper"></div> 
-    </div> 
-
-    {{ partial "footer" .}}
-
     <script src="{{ `js/footnotes.js` | relURL }}"></script>
+    {{ if or .Params.math ( default true .Site.Params.math ) }}
     <!-- Scripts -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax -->
     <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
-    <!-- this is a 404 right now anyway -->
-    <!--script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script-->
+    {{ end }}
   </body>
 </html>

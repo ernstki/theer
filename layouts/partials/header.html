@@ -1,7 +1,13 @@
-<nav class="UnderlineNav UnderlineNav--right">
-  <a class="UnderlineNav-actions h2" href="{{ .Site.BaseURL }}">
-    {{ .Site.Title }}
-  </a>
+<nav class="UnderlineNav UnderlineNav--right px-3">
+  <div class="UnderlineNav-actions">
+    <h2>
+      <a class="muted-link" href="{{ .Site.BaseURL }}">
+        <img class="avatar" alt="sadmac" src="{{ `img/sadmac.png` | relURL }}"
+         width="32" height="32" aria-hidden="true" />
+        <span class="ml-1">{{ .Site.Title }}</span>
+      </a>
+    </h2>
+  </div>
 
   {{ $currentPage := . }}
   {{ with .Site.Menus.main }}
@@ -14,7 +20,7 @@
       <div class="Box Box--condensed position-absolute dropdown-content ">
         {{ range .Children }}
         <div class="Box-body" style="">
-          <a href="{{ .URL }}">
+          <a href="{{ .RelPermalink }}">
             {{ .Name }}
           </a>
         </div>
@@ -22,6 +28,7 @@
       </div>
     </div>
     {{ else }}
+    <!-- .URL -->
     <a class="UnderlineNav-item {{ if $currentPage.IsMenuCurrent "main" . }}selected{{ end }}" href="{{ .URL }}">
       {{ .Pre }}
       <span>{{ .Name }}</span>

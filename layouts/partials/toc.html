@@ -1,0 +1,9 @@
+  {{ if and (gt .WordCount 0 ) (ne .Params.toc "false") }}
+    <div id="toc" class="Box Box--blue px-3 py-2 mb-3 mt-5">
+      <h4>Contents</h4>
+      {{- $toc := .TableOfContents -}}
+      {{- $toc := replaceRE `<nav id="TableOfContents">\n<ul>\n<li>\n<ul>` `<nav id="TableOfContents"><ul>` $toc -}}
+      {{- $toc := replaceRE `</ul>\n</li>\n</ul>\n</nav>` `</ul>\n</nav>` $toc -}}
+      {{- safeHTML $toc -}}
+    </div>
+  {{ end }}

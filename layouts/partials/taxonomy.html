@@ -1,0 +1,17 @@
+
+<!-- categories -->
+{{ with .Params.Categories }}{{ range . }}
+<a href='{{ "/categories/" | relLangURL }}{{ . | urlize }}' class="muted-link">
+  <span class="Label Label--gray-darker">{{ . }}</span>
+</a>
+{{ end }}{{ end }}
+<!-- tags -->
+{{ if .Params.Tags}}
+{{ with .Params.Tags }}{{ range . }}
+<a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}' class="muted-link">
+  <span class="Label Label--gray">{{ . }}</span>
+</a>
+{{ end }}{{ end }}
+{{ else }}
+  <span class="Label Label--gray">untagged</span>
+{{ end }}

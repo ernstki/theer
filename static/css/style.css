@@ -1,24 +1,26 @@
 /* custom css here */
+html,
+body {
+  height: 100%;
+}
 .h-100 {
   height: 100%;
 }
 
 #holy {
   display: grid;
-  grid-template-rows: auto 1fr;
+  /* auto: as wide as its content
+   * fr: all available space */
   grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"
-    "main side";
+    "main side"
+    "footer side";
 }
 #header {
   grid-area: header;
-  margin-top: 0.5em;
 }
-#header a:active, #header a:hover {
-  text-decoration: none;
-}
-
 #main {
   grid-area: main;
   max-width: 782px;
@@ -27,13 +29,16 @@
   grid-area: side;
   width: 230px;
 }
+#footer {
+  grid-area: footer;
+}
 aside {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   max-height: 100vh;
   display: block;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /* Menu */
@@ -61,11 +66,6 @@ aside {
   z-index: 1;
 }
 
-/* TOC */
-#toc {
-  margin-top: 1.5rem;
-  padding: 0.7rem;
-}
 #toc * {
   list-style: none;
   display: block;
@@ -73,23 +73,20 @@ aside {
   /* overflow: hidden; */
   /* text-overflow: ellipsis; */
 }
-#toc ul {
-  /* padding-left: 0.8rem; */
-  padding-left: 0;
-}
 
-/* WTF Hugo? */
-#toc ul li ul li ul li {
+#toc li {
   padding-left: 0.8rem;
   margin-top: 0.3rem;
 }
 
-#toc h1 {
-  font-size: 110%;
-  font-weight: bold;
-  font-variant: small-caps;
-  margin-bottom: 1em;
+#toc ul ul {
+  padding-left 0.8rem;
 }
+
+#TableOfContents > ul:first-of-type > li {
+  padding-left: 0;
+}
+
 
 /* source: https://www.madcapsoftware.com/blog/css-tip-creating-styled-boxes-notes-warnings-examples-tips */
 .note {
