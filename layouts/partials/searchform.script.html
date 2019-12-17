@@ -1,0 +1,102 @@
+{{- /* click handler for "search" link in nav bar */ -}}
+<script>
+  document.addEventListener('DOMContentLoaded', function (e) {
+    var mainMenu = document.getElementById('mainmenu');
+    var searchLink = document.getElementById('searchlink');
+    var searchForm = document.getElementById('searchform');
+    var searchBox = document.getElementById('searchbox');
+    var searchBtn = document.getElementById('searchbutton');
+
+    inhibitScroll = function (e) {
+      // neither e.preventDefault() or e.stopPropagation() seem to do anything
+      // this can be janky if there are tons of queued scroll events
+      // ...but it works
+      document.documentElement.scrollTop = 0;
+    };
+
+    enableScroll = function () {
+      window.removeEventListener('scroll', inhibitScroll, true);
+    };
+
+    // toggle showing #mainmenu and #searchform elements
+    hideSearchBox = function () {
+      searchForm.classList.remove('anim-fade-in');
+      searchForm.classList.add('anim-fade-out');
+      searchForm.classList.add('hidden');
+
+      mainMenu.classList.remove('anim-fade-out');
+      mainMenu.classList.add('anim-fade-in');
+      mainMenu.classList.remove('hidden');
+
+      // always un-focus, so it will scroll into view when re-focused
+      searchBox.blur();
+    };
+
+    showSearchBox = function () {
+      // ignore queued scroll events (re-enable when hiding)
+      window.addEventListener('scroll', inhibitScroll, true);
+
+      mainMenu.classList.remove('anim-fade-in');
+      mainMenu.classList.add('anim-fade-out');
+      mainMenu.classList.add('hidden');
+
+      searchForm.classList.remove('anim-fade-out');
+      searchForm.classList.add('anim-fade-in');
+      searchForm.classList.remove('hidden');
+
+      searchBox.focus();
+      document.documentElement.scrollTop = 0;
+      searchBox.setSelectionRange(0, searchBox.value.length);
+
+      // re-enable scrolling events after a short delay
+      window.setTimeout(enableScroll, 1500);
+    };
+
+    // show the search box and hide the main menu
+    searchLink.addEventListener('click', showSearchBox);
+
+    // press <Esc> to hide it again
+    [searchBox, searchBtn].forEach(function (elem) {
+      elem.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape' && e.key !== 'Esc' ) return;
+        hideSearchBox();
+      });
+    });
+
+    // …or click somewhere outside search box
+    document.body.addEventListener('click', function (e) {
+      if (searchForm.classList.contains('hidden')) return;
+      if (e.target === searchBox || e.target === searchBtn) return;
+      hideSearchBox();
+    }, true );  // useCapture, which is still magic to me
+
+    // add 's' and '/' shortcuts for the search box
+    // and 'h' shortcut for "go home" (blog index page)
+    document.body.addEventListener('keydown', function (e) {
+      if (e.target === searchBox ||
+          e.altKey || e.ctrlKey || e.metaKey || e.shiftKey ||
+          e.isComposing) return;
+
+      e.preventDefault();
+
+      switch (e.key) {
+        case 's':
+        case '/':
+          showSearchBox();
+          break;
+        case 'h':
+          document.location = "{{ .Site.BaseURL }}";
+      }
+    });
+
+    // highlight the text in the search box when you click into it
+    // kinda fights you when you're TRYING to select text, so disabled
+    //searchBox.addEventListener('click', function () {
+    //  searchBox.setSelectionRange(0, searchBox.value.length);
+    //});
+
+    // hide search form if you tab out of it; didn't seem to work
+    //searchForm.addEventListener('blur', hideSearchBox);
+
+  });  // DOMContentLoaded
+</script>

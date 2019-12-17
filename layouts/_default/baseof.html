@@ -77,65 +77,16 @@
     </div>
 
     {{- block "footerjs" . -}}
-    <script src="{{ `js/footnotes.js` | relURL }}"></script>
-    {{ if or .Params.math ( default true .Site.Params.math ) }}
     <!-- Scripts -->
+    <script src="{{ `js/footnotes.js` | relURL }}"></script>
+    <!-- click handler for "search" link in nav bar -->
+    {{ partial "searchform.script.html" . }}
+
+    {{- if or .Params.math ( default true .Site.Params.math ) -}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax -->
     <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
-    <!-- click handler for "search" link in nav bar -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function (e) {
-        var mainMenu = document.getElementById('mainmenu');
-        var searchLink = document.getElementById('searchlink');
-        var searchForm = document.getElementById('searchform');
-        var searchBox = document.getElementById('searchbox');
-        var searchBtn = document.getElementById('searchbutton');
-
-        // toggle showing #mainmenu and #searchform elements
-        hideSearchBox = function () {
-          searchForm.classList.remove('anim-fade-in');
-          searchForm.classList.add('anim-fade-out');
-          searchForm.classList.add('hidden');
-
-          mainMenu.classList.remove('anim-fade-out');
-          mainMenu.classList.add('anim-fade-in');
-          mainMenu.classList.remove('hidden');
-        };
-
-        showSearchBox = function () {
-          mainMenu.classList.remove('anim-fade-in');
-          mainMenu.classList.add('anim-fade-out');
-          mainMenu.classList.add('hidden');
-
-          searchForm.classList.remove('anim-fade-out');
-          searchForm.classList.add('anim-fade-in');
-          searchForm.classList.remove('hidden');
-
-          searchForm.elements.search.focus();
-        };
-
-        // highlight the text in the search box when you click into it
-        searchBox.addEventListener('click', function () {
-          searchBox.setSelectionRange(0, searchBox.value.length);
-        });
-
-        // show the search box and hide the main menu
-        // press <Esc> or click somewhere outside search box to hide it again
-        searchLink.addEventListener('click', function (e) {
-          searchBox.addEventListener('keydown', function (e) {
-            if (e.key !== 'Escape' && e.key !== 'Esc' ) return;
-            hideSearchBox();
-          });
-          document.body.addEventListener('click', function (e) {
-            if (e.target === searchBox || e.target === searchBtn) return;
-            hideSearchBox();
-          }, true );  // useCapture, which is still magic to me
-        });
-      });  // DOMContentLoaded
-    </script>
+    {{- end -}}{{- /* if .Params.math */ -}}
     {{- end -}}{{- /* footerjs block */ -}}
-
-    {{ end }}
   </body>
 </html>

@@ -1,11 +1,17 @@
-{{/* Credits and Copyright */}}
+  <p class="markdown-body mb-1 text-small text-gray-light">
+    <strong>Hint:</strong>
+    <kbd>/</kbd> / <kbd>s</kbd> = focus the search box; 
+    <kbd>h</kbd> = go home
+  </p>
+{{- /* credits and copyright */ -}}
 {{ if (default true .Site.Params.ShowFooterCredits) }}
-  <span class="text-small text-gray">
-    {{ with .Site.Copyright }}{{ . | markdownify }} &middot; {{ end }}
-
+  <p class="text-small text-gray">
     Powered by the
     <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a>
     theme (<a href="https://github.com/ernstki/theer">mod</a>) for
     <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
-  </span>
+  </p>
+  <!--span class="text-small text-gray">
+    {{ with .Site.Copyright }}{{ . | markdownify }}{{ end }}
+  </span-->
 {{ end }}
