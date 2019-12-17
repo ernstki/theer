@@ -42,5 +42,5 @@ Forked from [qqhann/hugo-primer][origin], which was originally called "Theer."
 MIT
 
 [primer]: https://github.com/primer/css
-[screenshot]: https://github.com/ernstki/theer/blob/master/images/screenshot.png
+[screenshot]: https://github.com/ernstki/theer/blob/master/images/screenshot.gif
 [origin]: https://github.com/qqhann/hugo-primer
