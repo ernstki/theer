@@ -1,0 +1,44 @@
+baseURL = "https://yourdomain.org/your-blog"
+publishDir = "/path/to/your/web/root"
+languageCode = "en-us"
+title = "blahgetty blahg"
+copyright = "Copyright &copy; 2019 - Your Name"
+theme = "current"
+pygmentsStyle = "solarized-dark"
+#pygmentsOptions = "nowrap"
+pygmentsCodefences = true
+#staticDir = 
+
+[author]
+  name = "Kevin Ernst"
+  homepage = "https://yourdomain.org/your-blog"
+  email = "your.email%20-at-%20yourdomain.org"
+
+[params]
+  showSearch = true
+  searchEndpoint = "https://yourdomain.org/api/search"
+  [[params.searchParams]]
+    name = "search_code"
+    value = "true"
+  [[params.searchParams]]
+    name = "project_id"
+    value = "83"
+
+[permalinks]
+  # better policy than ':title', since you may change the title in the YAML
+  # front matter, thereby breaking the permalink
+  post = "/:year/:month/:filename/"
+
+[menu]
+  [[menu.main]]
+    name = "code"
+    title = "my projects on GitHub"
+    url = "https://github.com/YourGitHubUser"
+  [[menu.main]]
+    name = "twitter"
+    title = "hit me up on twitter"
+    url = "https://twitter.com/YourTwitterUser"
+  [[menu.main]]
+    name = "email"
+    title = "hit me up with an email"
+    url = "mailto:your.email%20-at-%20yourdomain.org"
