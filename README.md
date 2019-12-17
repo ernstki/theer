@@ -1,4 +1,6 @@
-# Theer
+![screenshot][]
+
+# Theer Hugo Theme
 
 **A simple and beautiful Hugo theme based on GitHub's [Primer][]**
 
@@ -7,8 +9,6 @@ based on GitHub's Primer CSS, and adds some blog-specific features like tags,
 categories, and support for an external search API.
 
 Try it now, and leave me a star if you like it!
-
-![screenshot][]
 
 ## Features and TODOs
 
