@@ -87,10 +87,18 @@ aside {
   padding-left: 0;
 }
 
+.hidden {
+  display: none;
+}
+
+#searchform {
+  /* otherwise you get a very jarring vertical layout shift :/ */
+  padding: 12px 8px;
+}
 
 /* source: https://www.madcapsoftware.com/blog/css-tip-creating-styled-boxes-notes-warnings-examples-tips */
 .note {
-  background-image: url(../icons/note.png);
+  background-image: url(../img/note.png);
   background-position: 1.5em 1.5em;
   background-repeat: no-repeat;
   background-color: #f0f7fb;

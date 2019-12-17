@@ -1,3 +1,4 @@
+
 <nav class="UnderlineNav UnderlineNav--right px-3">
   <div class="UnderlineNav-actions">
     <code><h3>
@@ -9,11 +10,22 @@
     </h3></code>
   </div>
 
+  {{ partial "searchform" . }}
+
   {{ $currentPage := . }}
-  {{ with .Site.Menus.main }}
-  <div class="UnderlineNav-body">
-    {{ range sort . }}
-    {{ if .HasChildren }}
+  <div id="mainmenu" class="UnderlineNav-body">
+    {{- if .Site.Params.ShowSearch -}}
+    <a id="searchlink" title="only works if you're logged in to GitLab!"
+       class="UnderlineNav-item" href="#">search</a>
+    {{- if .Site.Menus.main -}}
+    <span id="searchseparator" class="UnderlineNav-item">|</span>
+    {{- end -}}
+    {{- end -}}{{- /* if .Site.Params.ShowSearch */ -}}
+
+    {{ if .Site.Menus.main }}
+    {{- with .Site.Menus.main -}}
+    {{- range . -}}
+    {{- if .HasChildren -}}
     <div class="flex-column position-relative dropdown" >
       {{ .Pre }}
       <span class="UnderlineNav-item {{ if $currentPage.HasMenuCurrent "main" . }}selected{{ end }}">{{ .Name }}</span>
@@ -29,12 +41,14 @@
     </div>
     {{ else }}
     <!-- .URL -->
-    <a class="UnderlineNav-item {{ if $currentPage.IsMenuCurrent "main" . }}selected{{ end }}" href="{{ .URL }}">
+    <a class="UnderlineNav-item {{ if $currentPage.IsMenuCurrent "main" . }}selected{{ end }}" 
+       title="{{ .Title }}" href="{{ .URL }}">
       {{ .Pre }}
       <span>{{ .Name }}</span>
     </a>
-    {{ end }}
-    {{ end }}
+    {{- end -}}{{- /* if .HasChildren */ -}}
+    {{- end -}}{{- /* range . */ -}}
+    {{- end -}}{{- /* with .Site.Menus.main */ -}}
   </div>
-  {{ end }}
+  {{- end -}}{{- /* if or .Site.Menus.main .Site.ShowSearchLink */ -}}
 </nav>

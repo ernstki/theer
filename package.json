@@ -1,0 +1,31 @@
+{
+  "name": "theer",
+  "version": "1.0.0",
+  "description": "Theer Hugo theme (ernstki's fork)",
+  "dependencies": {
+    "@primer/octicons": "^9.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://tfwebdev.research.cchmc.org/gitlab/ern6xv/hugo-work-log"
+  },
+  "keywords": [
+    "hugo",
+    "primer",
+    "theme",
+    "blog"
+  ],
+  "author": "Qiushi Pan",
+  "contributors": [
+    {
+      "name": "Kevin Ernst",
+      "email": "ernstki -at- mail.uc.edu",
+      "url": "https://github.com/ernstki"
+    }
+  ],
+  "license": "MIT"
+}
