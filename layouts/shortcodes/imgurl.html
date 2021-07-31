@@ -1,0 +1,7 @@
+{{/*
+  takes the .Site.BaseURL, add "img", add the first argument, return the result
+  as a path relative to the site root
+
+  h/t: 
+*/}}
+{{- path.Join "img" (.Get 0) | relURL -}}
