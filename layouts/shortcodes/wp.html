@@ -1,6 +1,6 @@
-{{/* usage:
+{{- /* usage:
        {{<wp "Page Title" "link text"/>}}  ← that "/" is required!
 
      --or--
        {{<wp "Page Title">}}link text{{</wp>}}
-*/}}<a href="https://en.wikipedia.org/wiki/{{ replace (.Get 0) " " "_" }}" title="Wikipedia (en) article for '{{ replace (.Get 0) "_" " " }}'">{{ if .Inner }}{{ .Inner | markdownify }}{{ else }}{{ default (replace (.Get 0) "_" " ") (.Get 1) }}{{ end }}</a>
+*/ -}}<a href="https://en.wikipedia.org/wiki/{{ replace (.Get 0) " " "_" }}" title="Wikipedia (en) article for '{{ replace (.Get 0) "_" " " }}'">{{ if .Inner }}{{ .Inner | markdownify }}{{ else }}{{ default (replace (.Get 0) "_" " ") (.Get 1) }}{{ end }}</a>{{- /* https://github.com/gohugoio/hugo/issues/1753 */ -}}
