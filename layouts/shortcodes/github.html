@@ -1,0 +1,10 @@
+{{- /* usage:
+       {{<gitlab "user/project"/>}}  ← that "/" is required!
+
+     --or--
+       {{<gitlab "user/project/path/to/resource" "link text"/>}}  ← that "/" is required!
+
+     --or--
+       {{<gitlab "user/project/path/to/resource">}}link text{{</gitlab>}}
+*/ -}}
+<a href="https://github.com/{{ .Get 0 }}" title="link to internal GitHub project: {{ .Get 0 }}">{{ if .Inner }}{{ .Inner | markdownify }}{{ else }}{{ default (.Get 0) (.Get 1) }}{{ end }}</a>{{- /*https://github.com/gohugoio/hugo/issues/1753 */ -}}
