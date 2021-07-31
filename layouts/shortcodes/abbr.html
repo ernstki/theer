@@ -1,0 +1,7 @@
+{{- /* usage:
+       {{<abbr "Three Letter Acronym" "tla"/>}}  ← that "/" is required!
+
+     --or--
+       {{<abbr "Three Letter Acronym">}}tla{{</abbr>}}
+*/ -}}
+<abbr title="{{ .Get 0 }}">{{ if .Inner }}{{ .Inner | markdownify }}{{ else }}{{ .Get 1 }}{{ end }}</abbr>{{- /* https://github.com/gohugoio/hugo/issues/1753 */ -}}
